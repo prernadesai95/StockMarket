@@ -1,0 +1,101 @@
+package Project;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
+public class SignUP_Page {
+	
+	@FindBy(xpath="//input[@name='firstname']") private WebElement fName;
+	@FindBy(xpath="//input[@name='lastname']") private WebElement lName;
+	@FindBy(xpath="//input[@name='reg_email__']") private WebElement email_id;
+	@FindBy(xpath="//input[@name='reg_passwd__']") private WebElement pwd;
+	
+	@FindBy(xpath="(//input[@type='radio'])[1]") private WebElement female;
+	@FindBy(xpath="(//input[@type='radio'])[2]") private WebElement male;
+	@FindBy(xpath="(//input[@type='radio'])[3]") private WebElement custom;
+
+	@FindBy(xpath="//select[@id='day']") private WebElement date;
+	@FindBy(xpath="//select[@id='month']") private WebElement month;
+	@FindBy(xpath="//select[@id='year']") private WebElement year;
+	
+	@FindBy(xpath="//button[@name='websubmit']") private WebElement loginBtn;
+	
+	
+	
+	
+	SignUP_Page(WebDriver d)
+	{
+		PageFactory.initElements(d, this);
+	}
+	
+	
+		public void enterFirstName(String fname) {	
+			fName.sendKeys(fname);
+		}
+		
+		public void enterLastName(String lname) {
+			lName.sendKeys(lname);
+		}
+		
+		public void enterEmail(String email) {
+			email_id.sendKeys(email);
+		}
+		
+		public void enterNewPassword(String password) {
+			pwd.sendKeys(password);
+			
+		}
+		
+		
+		//date
+		public void selectDate(String d) {
+			Select S = new Select(date);
+			S.selectByValue(d);
+		}
+		
+		
+		//month
+		public void selectMonth(String m) {
+			Select S = new Select(month);
+			S.selectByVisibleText(m);
+		}
+		
+		
+		//year
+		public void selectYear(String y) {
+			Select S = new Select(year);
+			S.selectByValue(y);
+		}
+	
+		
+		public void clickOnRadio1() {
+			female.click();
+		}
+		
+		public void clickOnRadio2() {
+			male.click();
+		}
+		
+		public void clickOnRadio3() {
+			custom.click();
+		}
+		
+		
+		public void loginBtn() {
+			loginBtn.click();
+		}
+		
+
+		public boolean enabledButton() {
+		boolean value = loginBtn.isEnabled();
+		return value;
+			
+		}
+
+
+		
+
+}
